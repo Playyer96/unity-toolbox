@@ -11,12 +11,12 @@ namespace CubeS.Toolbox
 
         private void OnEnable()
         {
-            Gem.OnGemCollected += Add;
+            Item.OnItemCollected += Add;
         }
 
         private void OnDisable()
         {
-            Gem.OnGemCollected -= Add;
+            Item.OnItemCollected -= Add;
         }
 
         public void Add(ItemData itemData)
