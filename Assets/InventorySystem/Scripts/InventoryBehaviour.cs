@@ -4,20 +4,40 @@ using UnityEngine;
 
 namespace CubeS.Toolbox
 {
-    public class Inventory : MonoBehaviour
+    public class InventoryBehaviour : MonoBehaviour
+    {
+        Inventory inventory;
+
+        void Awake()
+        {
+            inventory = new Inventory();
+        }
+
+        void OnEnable()
+        {
+            Item.OnGemCollected += inventory.Add;
+        }
+
+        void OnDisable()
+        {
+            Item.OnGemCollected -= inventory.Add;
+        }
+
+        public void Add(ItemData itemData)
+        {
+            inventory.Add(itemData);
+        }
+
+        public void Remove(ItemData itemData)
+        {
+            inventory.Remove(itemData);
+        }
+    }
+
+    public class Inventory
     {
         public List<InventoryItem> inventory = new List<InventoryItem>();
         private Dictionary<ItemData, InventoryItem> itemDictionary = new Dictionary<ItemData, InventoryItem>();
-
-        private void OnEnable()
-        {
-            Gem.OnGemCollected += Add;
-        }
-
-        private void OnDisable()
-        {
-            Gem.OnGemCollected -= Add;
-        }
 
         public void Add(ItemData itemData)
         {
@@ -30,14 +50,14 @@ namespace CubeS.Toolbox
             {
                 InventoryItem newItem = new InventoryItem(itemData);
                 inventory.Add(newItem);
-                itemDictionary.Add(itemData, newItem); 
+                itemDictionary.Add(itemData, newItem);
                 Debug.Log($"Added {item.itemData.displayName} to the inventory for the first time.");
             }
         }
 
         public void Remove(ItemData itemData)
         {
-            if(itemDictionary.TryGetValue((ItemData)itemData, out InventoryItem item))
+            if (itemDictionary.TryGetValue((ItemData)itemData, out InventoryItem item))
             {
                 item.RemoveFromStack();
                 if (item.stackSize == 0)
