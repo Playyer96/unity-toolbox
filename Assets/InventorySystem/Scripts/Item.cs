@@ -7,14 +7,15 @@ namespace CubeS.Toolbox
 {
     public class Item : MonoBehaviour, ICollectible
     {
-        public static event HandleGemCollected OnGemCollected; 
-        public delegate void HandleGemCollected(ItemData itemData);
+        
+        public static event HandleItemCollected OnItemCollected; 
+        public delegate void HandleItemCollected(ItemData itemData);
         public ItemData itemData;
 
         public void Collect()
         {
             Destroy(gameObject);
-            OnGemCollected?.Invoke(itemData);
+            OnItemCollected?.Invoke(itemData);
         }
     }
 }

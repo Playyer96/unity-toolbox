@@ -9,11 +9,11 @@ C:\Program Files\Unity\Hub\Editor\2021.2.17f1\Editor\Unity.exe
 -batchMode
 -noUpm
 -name
-AssetImportWorker0
+AssetImportWorker1
 -projectPath
 F:/Projects/Toolbox
 -logFile
-Logs/AssetImportWorker0.log
+Logs/AssetImportWorker1.log
 -srvPort
-64349
+63959
 Successfully changed project path to: F:/Projects/Toolbox

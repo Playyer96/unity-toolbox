@@ -15,12 +15,12 @@ namespace CubeS.Toolbox
 
         void OnEnable()
         {
-            Item.OnGemCollected += inventory.Add;
+            Item.OnItemCollected += inventory.Add;
         }
 
         void OnDisable()
         {
-            Item.OnGemCollected -= inventory.Add;
+            Item.OnItemCollected -= inventory.Add;
         }
 
         public void Add(ItemData itemData)
